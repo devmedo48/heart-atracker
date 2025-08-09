@@ -1,0 +1,113 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Health data relationships
+  heartRateData    HeartRateData[]
+  sleepData        SleepData[]
+  temperatureData  TemperatureData[]
+  activityData     ActivityData[]
+  notifications    Notification[]
+  recommendations  Recommendation[]
+
+  @@map("users")
+}
+
+model HeartRateData {
+  id        String   @id @default(cuid())
+  userId    String
+  bpm       Int
+  timestamp DateTime @default(now())
+  quality   String?  // "good", "normal", "poor"
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("heart_rate_data")
+}
+
+model SleepData {
+  id          String   @id @default(cuid())
+  userId      String
+  duration    Float    // hours
+  quality     Int      // 1-10 scale
+  deepSleep   Float?   // hours
+  lightSleep  Float?   // hours
+  remSleep    Float?   // hours
+  startTime   DateTime
+  endTime     DateTime
+  timestamp   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sleep_data")
+}
+
+model TemperatureData {
+  id          String   @id @default(cuid())
+  userId      String
+  temperature Float    // Celsius
+  timestamp   DateTime @default(now())
+  location    String?  // "forehead", "ear", "armpit", etc.
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("temperature_data")
+}
+
+model ActivityData {
+  id        String   @id @default(cuid())
+  userId    String
+  steps     Int
+  calories  Int
+  distance  Float?   // kilometers
+  duration  Int?     // minutes
+  timestamp DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("activity_data")
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  message   String
+  type      String   // "alert", "warning", "info", "success"
+  read      Boolean  @default(false)
+  timestamp DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
+}
+
+model Recommendation {
+  id          String   @id @default(cuid())
+  userId      String
+  title       String
+  description String
+  category    String   // "sleep", "exercise", "diet", "general"
+  priority    String   // "low", "medium", "high"
+  timestamp   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("recommendations")
+} 
