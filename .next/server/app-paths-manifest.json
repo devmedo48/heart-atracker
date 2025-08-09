@@ -1,3 +1,18 @@
 {
-  "/page": "app/page.js"
+  "/_not-found": "app/_not-found.js",
+  "/api/esp32/activity/route": "app/api/esp32/activity/route.js",
+  "/api/esp32/heart-rate/route": "app/api/esp32/heart-rate/route.js",
+  "/api/esp32/sleep/route": "app/api/esp32/sleep/route.js",
+  "/auth/login/page": "app/auth/login/page.js",
+  "/api/esp32/temperature/route": "app/api/esp32/temperature/route.js",
+  "/auth/register/page": "app/auth/register/page.js",
+  "/page": "app/page.js",
+  "/dashboard/activity/page": "app/dashboard/activity/page.js",
+  "/dashboard/notifications/page": "app/dashboard/notifications/page.js",
+  "/dashboard/heart-rate/page": "app/dashboard/heart-rate/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/recommendations/page": "app/dashboard/recommendations/page.js",
+  "/dashboard/sleep/page": "app/dashboard/sleep/page.js",
+  "/dashboard/settings/page": "app/dashboard/settings/page.js",
+  "/dashboard/temperature/page": "app/dashboard/temperature/page.js"
 }
