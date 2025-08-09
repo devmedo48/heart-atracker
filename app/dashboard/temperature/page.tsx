@@ -69,8 +69,8 @@ export default function TemperaturePage() {
           <button
             onClick={() => setIsLive(!isLive)}
             className={`px-3 py-1 text-sm rounded-md transition-colors ${isLive
-                ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
-                : 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
+              ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300'
+              : 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
               }`}
           >
             {isLive ? 'Live' : 'Static'}
@@ -212,7 +212,7 @@ export default function TemperaturePage() {
                 <div className="w-3 h-3 bg-red-500 rounded-full mr-3"></div>
                 <span className="font-medium text-gray-900 dark:text-white">High Fever</span>
               </div>
-              <span className="text-sm text-gray-600 dark:text-gray-300">>39.0°C</span>
+              <span className="text-sm text-gray-600 dark:text-gray-300">39.0°C</span>
             </div>
 
             <div className="flex items-center justify-between p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
